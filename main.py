@@ -33,7 +33,13 @@ db = client["uploads"]
 collection = db["files"]
 
 @app.post("/upload")
-async def upload_file(file: UploadFile = File(...), filetype: str = Form(...)):
+@app.post("/upload")
+async def upload_file(
+    file: UploadFile = File(...),
+    filetype: str = Form("")         # default = ""
+):
+    ...
+
     try:
         contents = await file.read()
         print("File received:", file.filename)
